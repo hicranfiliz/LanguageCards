@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/wordCardsFragment"
+        android:icon="@drawable/book2"
+        android:title="Vocabulary" />
+
+    <item
+        android:id="@+id/learnedFragment"
+        android:icon="@drawable/dictionary"
+        android:title="Learned" />
+
+</menu>
