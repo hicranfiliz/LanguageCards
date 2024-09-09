@@ -4,11 +4,11 @@
     <item
         android:id="@+id/wordCardsFragment"
         android:icon="@drawable/book2"
-        android:title="Vocabulary" />
+        android:title="@string/vocabulary" />
 
     <item
         android:id="@+id/learnedFragment"
         android:icon="@drawable/dictionary"
-        android:title="Learned" />
+        android:title="@string/learned" />
 
 </menu>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- BottomNavigationView için özel stil -->
+    <style name="CustomBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemTextAppearanceActive">@style/BottomNavTextAppearance</item>
+        <item name="itemTextAppearanceInactive">@style/BottomNavTextAppearance</item>
+    </style>
+
+    <!-- Menü öğelerinin yazı boyutunu ve yazı tipini belirleyen stil -->
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+</resources>
