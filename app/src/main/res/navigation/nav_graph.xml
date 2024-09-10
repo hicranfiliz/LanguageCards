@@ -26,14 +26,5 @@
         android:name="com.example.languagecards.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-        <argument
-            android:name="cardName"
-            app:argType="string" />
-        <argument
-            android:name="cardMeaing"
-            app:argType="string" />
-        <argument
-            android:name="cardImage"
-            app:argType="int" />
     </fragment>
 </navigation>

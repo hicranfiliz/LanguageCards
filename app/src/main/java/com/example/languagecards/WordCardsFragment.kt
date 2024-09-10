@@ -27,12 +27,11 @@ class WordCardsFragment : Fragment() {
         var cardList = LanguageCardsRepo.getLanguageCards()
 
         val adapter = LanguageCardAdapter(cardList){ selectedCard ->
-            val action = WordCardsFragmentDirections.actionWordCardsFragmentToDetailFragment(
-                selectedCard.word,
-                selectedCard.meaning,
-                selectedCard.image
-            )
-            findNavController().navigate(action)
+            val bundle = Bundle()
+            bundle.putString("cardName", selectedCard.word)
+            bundle.putString("cardMeaning", selectedCard.meaning)
+
+            findNavController().navigate(R.id.action_wordCardsFragment_to_detailFragment, bundle)
 
         }
         binding.rvCards.adapter = adapter
@@ -45,10 +44,5 @@ class WordCardsFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    private fun showPopup(card : LanguageCard){
-        var dialog = DetailFragment.newInstance(card)
-        dialog.show(parentFragmentManager, "CardDetailDialog")
     }
 }
