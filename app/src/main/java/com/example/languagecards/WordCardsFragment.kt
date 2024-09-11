@@ -43,6 +43,7 @@ class WordCardsFragment : Fragment() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             cardList = LanguageCardsRepo.getLanguageCards().shuffled()
             adapter.updateData(cardList)
+
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

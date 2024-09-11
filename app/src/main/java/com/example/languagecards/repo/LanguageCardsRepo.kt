@@ -7,7 +7,7 @@ object LanguageCardsRepo {
 
     fun getLanguageCards(): List<LanguageCard> {
         return listOf(
-            LanguageCard("Apple", "Elma", R.drawable.apple1, 1, "I like to eat an apple every day for a healthy snack."),
+            LanguageCard("Apple", "Elma", R.drawable.apple, 1, "I like to eat an apple every day for a healthy snack."),
             LanguageCard("Banana", "Muz", R.drawable.banana, 1, "Monkeys love to eat bananas in the jungle."),
             LanguageCard("Cat", "Kedi", R.drawable.cat, 1, "My cat loves to sit by the window and watch the birds."),
             LanguageCard("Dog", "Köpek", R.drawable.dog, 1, "The dog barked loudly when it saw a stranger."),
@@ -34,7 +34,7 @@ object LanguageCardsRepo {
             LanguageCard("Mirror", "Ayna", R.drawable.mirror, 3, "She looked at herself in the mirror before leaving the house."),
             LanguageCard("Yard", "Bahçe", R.drawable.fence, 3, "We played soccer in the yard during the summer."),
             LanguageCard("Shell", "Kabuk", R.drawable.shell, 3, "I found a beautiful shell on the beach during our vacation."),
-            LanguageCard("Airplane", "Uçak", R.drawable.planet, 3, "The airplane took off smoothly and headed to New York."),
+            LanguageCard("Planet", "Gezegen", R.drawable.planet, 3, "The airplane took off smoothly and headed to New York."),
             LanguageCard("Coin", "Madeni Para", R.drawable.money, 3, "He flipped a coin to decide who would go first."),
             LanguageCard("Hospital", "Hastane", R.drawable.hospital, 3, "She had to stay in the hospital for a few days after the surgery."),
             LanguageCard("Library", "Kütüphane", R.drawable.library, 3, "I went to the library to study for my exams."),

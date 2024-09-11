@@ -24,12 +24,12 @@
             android:fontFamily="@font/poppins"
             android:text="@string/level_1"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imgCard"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/community"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp" />
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgCard"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins"
             android:text="@string/name"
             android:textColor="@color/lavender"
@@ -55,8 +55,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins"
             android:text="@string/meaning"
+            android:layout_marginBottom="16dp"
             android:textColor="@color/lavender"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 
