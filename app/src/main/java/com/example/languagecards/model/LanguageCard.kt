@@ -4,6 +4,7 @@ data class LanguageCard(
     val word: String,
     val meaning : String,
     val image: Int,
-    val level : Int,) {
+    val level : Int,
+    val sentence : String,) {
 
 }

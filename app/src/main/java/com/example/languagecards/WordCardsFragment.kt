@@ -30,6 +30,9 @@ class WordCardsFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("cardName", selectedCard.word)
             bundle.putString("cardMeaning", selectedCard.meaning)
+            bundle.putInt("cardImage", selectedCard.image)
+            bundle.putInt("cardLevel", selectedCard.level)
+            bundle.putString("cardSentence", selectedCard.sentence)
 
             findNavController().navigate(R.id.action_wordCardsFragment_to_detailFragment, bundle)
 
