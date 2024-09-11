@@ -35,6 +35,7 @@ class DetailFragment : Fragment() {
         val cardImage = arguments?.getInt("cardImage")
         val cardLevel = arguments?.getInt("cardLevel")
         val cardSentence = arguments?.getString("cardSentence")
+        val isLearned = arguments?.getBoolean("isLearned", false) ?: false
 
         binding.tvCardName.text = cardName
         binding.tvCardMeaning.text = cardMeaning
@@ -47,13 +48,32 @@ class DetailFragment : Fragment() {
         val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
-        binding.btnLearned.setOnClickListener {
-            cardName?.let {
-                editor.putString(it, it)
-                editor.apply()
-                Toast.makeText(requireContext(), "$it has been learned!", Toast.LENGTH_SHORT).show()
+        if (isLearned) {
+            binding.btnUnLearned.visibility = View.VISIBLE
+            binding.btnLearned.visibility = View.GONE
+
+            binding.btnUnLearned.setOnClickListener {
+                cardName?.let {
+                    editor.remove(it)
+                    editor.apply()
+                    Toast.makeText(requireContext(), "$it has been unlearned!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp() // Geri dönüyoruz
+                }
+            }
+        } else {
+            binding.btnLearned.visibility = View.VISIBLE
+            binding.btnUnLearned.visibility = View.GONE
+
+            binding.btnLearned.setOnClickListener {
+                cardName?.let {
+                    editor.putString(it, it)
+                    editor.apply()
+                    Toast.makeText(requireContext(), "$it has been learned!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                }
             }
         }
+
 
         return binding.root
 

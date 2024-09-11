@@ -7,7 +7,11 @@ import com.example.languagecards.databinding.ItemCardBinding
 import com.example.languagecards.model.LanguageCard
 import com.example.languagecards.viewholder.LearnedViewHolder
 
-class LearnedWordAdapter(private val learnedWords : List<LanguageCard>) : RecyclerView.Adapter<LearnedViewHolder>() {
+class LearnedWordAdapter(
+    private val learnedWords : List<LanguageCard>,
+    private val clickListener: (LanguageCard) -> Unit
+) : RecyclerView.Adapter<LearnedViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LearnedViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return LearnedViewHolder(binding)
@@ -24,6 +28,10 @@ class LearnedWordAdapter(private val learnedWords : List<LanguageCard>) : Recycl
         holder.binding.tvMeaning.text = learnedWord.meaning
         holder.binding.tvLevel.text = "Level: ${learnedWord.level}"
         holder.binding.imgCard.setImageResource(learnedWord.image)
+
+        holder.itemView.setOnClickListener {
+            clickListener(learnedWord)
+        }
     }
 
 }
