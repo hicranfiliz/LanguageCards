@@ -48,13 +48,14 @@ class QuizFragment : Fragment() {
             if (currentQuestionIndex < learnedWords.size) {
                 showQuestion()
             } else {
-                binding.tvQuestion.text = "Quiz Finished! Your score: $score/${learnedWords.size}"
-                binding.ivOption1.visibility = View.GONE
-                binding.ivOption2.visibility = View.GONE
-                binding.ivOption3.visibility = View.GONE
-                binding.ivOption4.visibility = View.GONE
-                binding.btnNext.visibility = View.GONE
-                binding.btnFinish.visibility = View.VISIBLE
+                showScoreAndAnimation()
+//                binding.tvQuestion.text = "Quiz Finished! Your score: $score/${learnedWords.size}"
+//                binding.ivOption1.visibility = View.GONE
+//                binding.ivOption2.visibility = View.GONE
+//                binding.ivOption3.visibility = View.GONE
+//                binding.ivOption4.visibility = View.GONE
+//                binding.btnNext.visibility = View.GONE
+//                binding.btnFinish.visibility = View.VISIBLE
             }
         }
 
@@ -107,6 +108,28 @@ class QuizFragment : Fragment() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             binding.tvQuestion.setTextColor(resources.getColor(R.color.black)) // Renk tekrar siyah
-        }, 1500)
+        }, 1000)
+    }
+
+    private fun showScoreAndAnimation() {
+        binding.tvQuestion.text = "Your score: $score/${learnedWords.size}"
+
+//        val anim = binding.lottieAnimationView
+//
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            anim.visibility = View.VISIBLE
+//            anim.playAnimation()
+//        }, 6000)
+
+        binding.lottieAnimationView.visibility = View.VISIBLE
+        binding.lottieAnimationView.setAnimation(R.raw.score)
+        binding.lottieAnimationView.playAnimation()
+
+        binding.ivOption1.visibility = View.GONE
+        binding.ivOption2.visibility = View.GONE
+        binding.ivOption3.visibility = View.GONE
+        binding.ivOption4.visibility = View.GONE
+        binding.btnNext.visibility = View.GONE
+        binding.btnFinish.visibility = View.GONE
     }
 }

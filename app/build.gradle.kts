@@ -58,4 +58,6 @@ dependencies {
 
     androidTestImplementation(libs.androidx.navigation.testing)
 
+    implementation(libs.lottie)
+
 }
