@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_learnedFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_learnedFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
     </fragment>
 
     <fragment
@@ -31,4 +34,9 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
     </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.languagecards.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" />
 </navigation>

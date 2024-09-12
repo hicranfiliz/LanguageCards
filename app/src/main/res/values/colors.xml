@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#8692f7</color>
+
+    <color name="incorrect">#F66358</color>
+    <color name="correct">#6BE36F</color>
 </resources>

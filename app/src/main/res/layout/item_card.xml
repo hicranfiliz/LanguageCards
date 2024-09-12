@@ -13,6 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/ivSoundIcon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/sound"
+            android:layout_alignParentStart="true"
+            android:layout_margin="15dp"
+            android:contentDescription="Telaffuz"
+            android:clickable="true"
+            android:focusable="true" />
+
         <TextView
             android:id="@+id/tvLevel"
             android:layout_width="wrap_content"
