@@ -1,5 +1,6 @@
 package com.example.languagecards.adapter
 
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,8 @@ class LearnedWordAdapter(
     private val learnedWords : List<LanguageCard>,
     private val clickListener: (LanguageCard) -> Unit
 ) : RecyclerView.Adapter<LearnedViewHolder>() {
+
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LearnedViewHolder {
         val binding = ItemCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -32,6 +35,24 @@ class LearnedWordAdapter(
         holder.itemView.setOnClickListener {
             clickListener(learnedWord)
         }
+
+        holder.binding.ivSoundIcon.setOnClickListener {
+            playSound(holder.binding.ivSoundIcon.context, learnedWord.soundResId)
+        }
+    }
+
+    private fun playSound(context: android.content.Context, soundResId: Int?) {
+        mediaPlayer?.release()
+
+        soundResId?.let {
+            mediaPlayer = MediaPlayer.create(context, it)
+            mediaPlayer?.start()
+        }
+    }
+
+    fun releaseMediaPlayer() {
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
 }

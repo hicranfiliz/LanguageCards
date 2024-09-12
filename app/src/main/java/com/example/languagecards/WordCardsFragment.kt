@@ -1,6 +1,7 @@
 package com.example.languagecards
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ class WordCardsFragment : Fragment() {
 
     private lateinit var binding: FragmentWordCardsBinding
     private lateinit var viewModel: LanguageCardsViewModel
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -93,5 +95,22 @@ class WordCardsFragment : Fragment() {
             (binding.rvCards.adapter as LanguageCardAdapter).updateData(viewModel.cardList)
             binding.swipeRefreshLayout.isRefreshing = false
         }
+    }
+
+    private fun playSound(soundResId: Int) {
+        mediaPlayer?.release()
+        mediaPlayer = MediaPlayer.create(requireContext(), soundResId)
+        mediaPlayer?.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (binding.rvCards.adapter as? LanguageCardAdapter)?.releaseMediaPlayer()
     }
 }

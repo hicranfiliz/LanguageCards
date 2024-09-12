@@ -5,6 +5,7 @@ data class LanguageCard(
     val meaning : String,
     val image: Int,
     val level : Int,
-    val sentence : String,) {
+    val sentence : String,
+    val soundResId: Int? = null,) {
 
 }
