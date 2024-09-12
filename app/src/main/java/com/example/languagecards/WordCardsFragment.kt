@@ -1,5 +1,6 @@
 package com.example.languagecards
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,12 @@ class WordCardsFragment : Fragment() {
 
         binding = FragmentWordCardsBinding.inflate(inflater, container, false)
 
-        var cardList = LanguageCardsRepo.getLanguageCards()
+        val sharedpref = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
+        val learnedCards = sharedpref.all.keys
+
+        var cardList = LanguageCardsRepo.getLanguageCards().filter {
+            !learnedCards.contains(it.word)
+        }
 
         val adapter = LanguageCardAdapter(cardList){ selectedCard ->
             val bundle = Bundle()
@@ -41,9 +47,12 @@ class WordCardsFragment : Fragment() {
         binding.rvCards.layoutManager = LinearLayoutManager(requireContext())
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            cardList = LanguageCardsRepo.getLanguageCards().shuffled()
-            adapter.updateData(cardList)
+            val learnedCards = sharedpref.all.keys
+            cardList = LanguageCardsRepo.getLanguageCards().shuffled().filter {
+                !learnedCards.contains(it.word)
+            }
 
+            adapter.updateData(cardList)
             binding.swipeRefreshLayout.isRefreshing = false
         }
 

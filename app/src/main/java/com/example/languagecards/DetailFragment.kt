@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
                     editor.remove(it)
                     editor.apply()
                     Toast.makeText(requireContext(), "$it has been unlearned!", Toast.LENGTH_SHORT).show()
-                    findNavController().navigateUp() // Geri dönüyoruz
+                    //findNavController().navigateUp()
                 }
             }
         } else {
@@ -69,7 +69,7 @@ class DetailFragment : Fragment() {
                     editor.putString(it, it)
                     editor.apply()
                     Toast.makeText(requireContext(), "$it has been learned!", Toast.LENGTH_SHORT).show()
-                    findNavController().navigateUp()
+                    //findNavController().navigateUp()
                 }
             }
         }
