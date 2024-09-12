@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieDrawable
 import com.example.languagecards.databinding.FragmentQuizBinding
 import com.example.languagecards.model.LanguageCard
 import com.example.languagecards.repo.LanguageCardsRepo
@@ -60,7 +61,7 @@ class QuizFragment : Fragment() {
         }
 
         binding.btnFinish.setOnClickListener {
-            findNavController().navigateUp()
+            showScoreAndAnimation()
         }
 
 
@@ -114,15 +115,9 @@ class QuizFragment : Fragment() {
     private fun showScoreAndAnimation() {
         binding.tvQuestion.text = "Your score: $score/${learnedWords.size}"
 
-//        val anim = binding.lottieAnimationView
-//
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            anim.visibility = View.VISIBLE
-//            anim.playAnimation()
-//        }, 6000)
-
         binding.lottieAnimationView.visibility = View.VISIBLE
         binding.lottieAnimationView.setAnimation(R.raw.score)
+        binding.lottieAnimationView.repeatCount = LottieDrawable.INFINITE
         binding.lottieAnimationView.playAnimation()
 
         binding.ivOption1.visibility = View.GONE

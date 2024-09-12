@@ -29,43 +29,9 @@ class WordCardsFragment : Fragment() {
         binding = FragmentWordCardsBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(LanguageCardsViewModel::class.java)
 
-        if (viewModel.cardList.isEmpty()) {
-            val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
-            val learnedCards = sharedPreferences.all.keys
-
-            var cardList = LanguageCardsRepo.getLanguageCards()
-            cardList = cardList.filter { !learnedCards.contains(it.word) }
-            viewModel.cardList = cardList
-        }
-
-
-        val adapter = LanguageCardAdapter(viewModel.cardList){ selectedCard ->
-            val bundle = Bundle()
-            bundle.putString("cardName", selectedCard.word)
-            bundle.putString("cardMeaning", selectedCard.meaning)
-            bundle.putInt("cardImage", selectedCard.image)
-            bundle.putInt("cardLevel", selectedCard.level)
-            bundle.putString("cardSentence", selectedCard.sentence)
-
-            findNavController().navigate(R.id.action_wordCardsFragment_to_detailFragment, bundle)
-
-        }
-
-        binding.rvCards.adapter = adapter
-        binding.rvCards.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
-            val learnedCards = sharedPreferences.all.keys
-
-            var cardList = LanguageCardsRepo.getLanguageCards().shuffled().filter {
-                !learnedCards.contains(it.word)
-            }
-            viewModel.cardList = cardList
-
-            adapter.updateData(viewModel.cardList)
-            binding.swipeRefreshLayout.isRefreshing = false
-        }
+        initializeCardList()
+        setUpRecyclerView()
+        swipetoRefresh()
 
         return binding.root
     }
@@ -83,6 +49,49 @@ class WordCardsFragment : Fragment() {
         if (updateCardList.size != viewModel.cardList.size){
             viewModel.cardList = updateCardList
             (binding.rvCards.adapter as LanguageCardAdapter).updateData(viewModel.cardList)
+        }
+    }
+
+    private fun initializeCardList(){
+        if (viewModel.cardList.isEmpty()) {
+            val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
+            val learnedCards = sharedPreferences.all.keys
+
+            var cardList = LanguageCardsRepo.getLanguageCards().shuffled()
+            cardList = cardList.filter { !learnedCards.contains(it.word) }
+            viewModel.cardList = cardList
+        }
+    }
+
+    private fun setUpRecyclerView(){
+        val adapter = LanguageCardAdapter(viewModel.cardList){ selectedCard ->
+            val bundle = Bundle()
+            bundle.putString("cardName", selectedCard.word)
+            bundle.putString("cardMeaning", selectedCard.meaning)
+            bundle.putInt("cardImage", selectedCard.image)
+            bundle.putInt("cardLevel", selectedCard.level)
+            bundle.putString("cardSentence", selectedCard.sentence)
+
+            findNavController().navigate(R.id.action_wordCardsFragment_to_detailFragment, bundle)
+
+        }
+
+        binding.rvCards.adapter = adapter
+        binding.rvCards.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun swipetoRefresh(){
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
+            val learnedCards = sharedPreferences.all.keys
+
+            val cardList = LanguageCardsRepo.getLanguageCards().shuffled().filter {
+                !learnedCards.contains(it.word)
+            }
+            viewModel.cardList = cardList
+
+            (binding.rvCards.adapter as LanguageCardAdapter).updateData(viewModel.cardList)
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 }
