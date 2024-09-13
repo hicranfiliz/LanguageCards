@@ -4,7 +4,13 @@
 
 The **Multilingual Word Learning App** allows users to explore and learn words in multiple languages. It provides an interactive and user-friendly interface for displaying words, showing their meanings, and playing their English pronunciations. The app also features a functionality for marking words as "learned," storing them in shared preferences, and allowing users to review their learned words. Furthermore, a quiz functionality is integrated, enabling users to test their knowledge using the words they have learned.
 
+
+https://github.com/user-attachments/assets/9f357de1-1542-4c67-a14a-c05c4a08ceea
+
+
 ---
+
+
 
 ## Main Features
 
