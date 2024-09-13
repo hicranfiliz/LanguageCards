@@ -42,7 +42,7 @@ class DetailFragment : Fragment() {
         binding.ivCardImage.setImageResource(cardImage ?: R.drawable.iris)
         binding.tvCardLevel.text = "Level: $cardLevel"
         binding.tvCardSentence.text = cardSentence
-        binding.tvTitle.text = "$cardName DETAIL"
+        binding.tvTitle.text = "$cardName Detail"
 
 
         val sharedPreferences = requireContext().getSharedPreferences("LearnedWords", Context.MODE_PRIVATE)
